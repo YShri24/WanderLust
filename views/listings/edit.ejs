@@ -1,0 +1,112 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+  <br><br>
+  <h3>Edit your Listing</h3>
+
+  <div class="col-8 offset-2">
+    <form method="POST" 
+    action="/listings/<%= listing._id %>?_method=PUT" 
+      novalidate 
+      class="needs-validation"
+      enctype="multipart/form-data">
+
+      <!-- TITLE -->
+      <div class="mb-4">
+        <label class="form-label">Title</label>
+        <input 
+          name="listing[title]" 
+          value="<%= listing.title %>" 
+          type="text" 
+          required
+          minlength="3"
+          class="form-control"
+        />
+        <div class="invalid-feedback">
+          Title must be at least 3 characters.
+        </div>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="mb-4">
+        <label class="form-label">Description</label>
+        <textarea 
+          name="listing[description]" 
+          required
+          class="form-control"
+        ><%= listing.description %></textarea>
+        <div class="invalid-feedback">
+          Description is required.
+        </div>
+      </div>
+     
+      <div class="mb-3">
+        Original Listing Image <br>
+        <img src="<%=originalImageUrl%>"style="max-width: 250px; height: 300;">
+      </div>
+      <!-- IMAGE -->
+      <div class="mb-4">
+        <label class="form-label">Upload New Image</label>
+        <input 
+          name="listing[image]"
+          type="file"
+          class="form-control"
+        />
+        <div class="invalid-feedback">
+          Enter a valid image URL.
+        </div>
+      </div>
+
+      <!-- PRICE + COUNTRY -->
+      <div class="row">
+        <div class="mb-4 col-md-4">
+          <label class="form-label">Price</label>
+          <input 
+            name="listing[price]" 
+            value="<%= listing.price %>" 
+            type="number" 
+            required
+            min="0"
+            class="form-control"
+          />
+          <div class="invalid-feedback">
+            Price must be a positive number.
+          </div>
+        </div>
+
+        <div class="mb-4 col-md-4">
+          <label class="form-label">Country</label>
+          <input 
+            name="listing[country]" 
+            value="<%= listing.country %>" 
+            type="text" 
+            required
+            class="form-control"
+          />
+          <div class="invalid-feedback">
+            Country is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- LOCATION -->
+      <div class="mb-4">
+        <label class="form-label">Location</label>
+        <input 
+          name="listing[location]" 
+          value="<%= listing.location %>" 
+          type="text" 
+          required
+          class="form-control"
+        />
+        <div class="invalid-feedback">
+          Location is required.
+        </div>
+      </div>
+
+      <button class="btn btn-dark edit-btn">Edit</button>
+      <br><br>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- LEFT SIDE -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- ❌ Removed Home -->
+
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Explore</a>
+        </li>
+
+        
+
+      </ul>
+
+      <!-- RIGHT SIDE (AUTH LINKS) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new"><b>AIRBNB your home</b></a>
+        </li>
+        <% if(!currentUser) { %>
+          <!-- Not Logged In -->
+          <li class="nav-item">
+            <a class="nav-link" href="/signup"><b>Signup</b></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><b>Login</b></a>
+          </li>
+
+        <% } else { %>
+          <!-- Logged In -->
+          <li class="nav-item">
+            <span class="nav-link"><b>Hello, <%= currentUser.username %></b></span>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><b>Logout</b></a>
+          </li>
+        <% } %>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
