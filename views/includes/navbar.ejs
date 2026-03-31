@@ -1,60 +1,65 @@
-<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+<style>
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+  }
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border bottom sticky-top">
   <div class="container-fluid">
-
-    <!-- Logo -->
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-solid fa-compass"></i>
-    </a>
-
-    <!-- Toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent">
+    <a class="navbar-brand" href="/listings"
+      ><i class="fa-regular fa-compass"></i
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <!-- LEFT SIDE -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <!-- ❌ Removed Home -->
-
-        <li class="nav-item">
-          <a class="nav-link" href="/listings">Explore</a>
-        </li>
-
-        
-
-      </ul>
-
-      <!-- RIGHT SIDE (AUTH LINKS) -->
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/listings/new"><b>AIRBNB your home</b></a>
-        </li>
-        <% if(!currentUser) { %>
-          <!-- Not Logged In -->
-          <li class="nav-item">
-            <a class="nav-link" href="/signup"><b>Signup</b></a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/login"><b>Login</b></a>
-          </li>
-
-        <% } else { %>
-          <!-- Logged In -->
-          <li class="nav-item">
-            <span class="nav-link"><b>Hello, <%= currentUser.username %></b></span>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/logout"><b>Logout</b></a>
-          </li>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 search-inp"
+            type="search"
+            placeholder="Search Destination"
+          />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if(!currUser){ %>
+        <a class="nav-link" aria-current="page" href="/signup"
+          ><b>Sign up</b></a
+        >
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %> <% if(currUser) { %>
+        <a class="nav-link" href="/logout">Log out</a>
         <% } %>
-
-      </ul>
-
+      </div>
     </div>
   </div>
 </nav>
