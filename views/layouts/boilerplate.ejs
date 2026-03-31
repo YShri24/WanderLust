@@ -15,10 +15,10 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
 </head>
 <body>
-    <%- include("../includes/navbar.ejs") %>
+    <%- include("../includes/navbar.ejs", { currUser: currUser }) %>
 
     <div class="container">
-        <%- include("../includes/flash.ejs") %><%-body%>
+       <%- include("../includes/flash.ejs", { success: success, error: error }) %><%-body%>
     </div>
 
     <%- include("../includes/footer.ejs") %>

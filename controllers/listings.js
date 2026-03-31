@@ -12,6 +12,18 @@ module.exports.renderNewForm = (req, res) => {
     res.render("listings/new.ejs");
 };
 
+module.exports.renderEditForm = async (req, res) => {
+    const { id } = req.params;
+
+    const listing = await Listing.findById(id);
+    
+    if (!listing) {
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings");
+    }
+
+    res.render("listings/edit.ejs", { listing , originalImageUrl: listing.image.url},);
+};
 // SHOW
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;

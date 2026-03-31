@@ -56,7 +56,7 @@ const sessionOption = {
     store:store,
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -79,9 +79,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
-    res.locals.currUser = req.user;
+    res.locals.success = req.flash("success") || [];
+    res.locals.error = req.flash("error") || [];
+    res.locals.currUser = req.user || null;
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log("USER:", req.user);
     next();
 });
 
